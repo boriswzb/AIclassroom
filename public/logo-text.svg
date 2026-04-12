@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100">
+  <defs>
+    <!-- 渐变背景 -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a1f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a3f;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- AI 光芒渐变 -->
+    <linearGradient id="aiGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- 文字渐变 -->
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#00d4ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- 发光效果 -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="400" height="100" rx="16" fill="url(#bgGrad)"/>
+  
+  <!-- 装饰：星星点 -->
+  <circle cx="30" cy="20" r="1.5" fill="#00d4ff" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="370" cy="80" r="1" fill="#7c3aed" opacity="0.6">
+    <animate attributeName="opacity" values="0.6;0.2;0.6" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="350" cy="25" r="1.2" fill="#00d4ff" opacity="0.7">
+    <animate attributeName="opacity" values="0.7;0.3;0.7" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- 图标：AI大脑+书本 -->
+  <g transform="translate(25, 15)" filter="url(#glow)">
+    <!-- 书本 -->
+    <path d="M5 55 L5 25 Q5 20 10 20 L35 20 Q40 20 40 25 L40 55 Q40 60 35 60 L10 60 Q5 60 5 55Z" 
+          fill="none" stroke="url(#aiGlow)" stroke-width="2" opacity="0.9"/>
+    <path d="M5 38 L40 38" stroke="url(#aiGlow)" stroke-width="1.5" opacity="0.7"/>
+    <!-- 书页线条 -->
+    <line x1="12" y1="28" x2="33" y2="28" stroke="#00d4ff" stroke-width="1" opacity="0.5"/>
+    <line x1="12" y1="33" x2="30" y2="33" stroke="#00d4ff" stroke-width="1" opacity="0.4"/>
+    <line x1="12" y1="43" x2="33" y2="43" stroke="#00d4ff" stroke-width="1" opacity="0.5"/>
+    <line x1="12" y1="48" x2="28" y2="48" stroke="#00d4ff" stroke-width="1" opacity="0.4"/>
+    <line x1="12" y1="53" x2="25" y2="53" stroke="#00d4ff" stroke-width="1" opacity="0.3"/>
+    
+    <!-- AI 脑电波 -->
+    <g transform="translate(20, 15)">
+      <circle cx="0" cy="0" r="12" fill="url(#aiGlow)" opacity="0.2"/>
+      <path d="M-8 0 Q-4 -8 0 0 Q4 8 8 0" 
+            fill="none" stroke="url(#aiGlow)" stroke-width="2.5" stroke-linecap="round">
+        <animate attributeName="d" 
+                 values="M-8 0 Q-4 -8 0 0 Q4 8 8 0;M-8 0 Q-4 -10 0 0 Q4 10 8 0;M-8 0 Q-4 -8 0 0 Q4 8 8 0" 
+                 dur="1.5s" repeatCount="indefinite"/>
+      </path>
+    </g>
+  </g>
+  
+  <!-- 主标题 -->
+  <text x="85" y="38" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif" 
+        font-size="26" font-weight="700" fill="url(#textGrad)" filter="url(#glow)">
+    我的AI课堂
+  </text>
+  
+  <!-- 副标题/ tagline -->
+  <text x="87" y="62" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif" 
+        font-size="12" fill="#94a3b8" letter-spacing="2">
+    智能学习新体验
+  </text>
+  
+  <!-- 装饰线 -->
+  <line x1="85" y1="72" x2="180" y2="72" stroke="url(#aiGlow)" stroke-width="1" opacity="0.5"/>
+  
+  <!-- 小闪电装饰 -->
+  <g transform="translate(340, 35)" opacity="0.8">
+    <path d="M0 0 L8 10 L5 10 L7 20 L-2 8 L1 8 Z" fill="url(#aiGlow)">
+      <animate attributeName="opacity" values="0.8;0.4;0.8" dur="1s" repeatCount="indefinite"/>
+    </path>
+  </g>
+</svg>

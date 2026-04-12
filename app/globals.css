@@ -45,75 +45,116 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+  /* Space Blue + AI Illumination custom utilities */
+  --color-space-900: #030b1a;
+  --color-space-800: #0a1628;
+  --color-space-700: #0f2038;
+  --color-space-600: #162d4d;
+  --color-space-500: #1e3a5f;
+  --color-ai-cyan: #00e5ff;
+  --color-ai-blue: #2196f3;
+  --color-ai-purple: #7c4dff;
+  --color-ai-gold: #ffd54f;
+  --color-nebula-pink: #e040fb;
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: #722ed1;
+  /* Light mode: keep functional but with a cooler, tech-forward feel */
+  --background: oklch(0.985 0.002 250);
+  --foreground: oklch(0.13 0.028 265);
+  --card: oklch(0.995 0.001 250);
+  --card-foreground: oklch(0.13 0.028 265);
+  --popover: oklch(0.995 0.001 250);
+  --popover-foreground: oklch(0.13 0.028 265);
+  --primary: #0d47a1;
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.96 0.008 250);
+  --secondary-foreground: oklch(0.18 0.028 265);
+  --muted: oklch(0.96 0.008 250);
+  --muted-foreground: oklch(0.50 0.015 260);
+  --accent: oklch(0.94 0.015 255);
+  --accent-foreground: oklch(0.18 0.028 265);
   --destructive: oklch(0.58 0.22 27);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.809 0.105 251.813);
-  --chart-2: oklch(0.623 0.214 259.815);
-  --chart-3: oklch(0.546 0.245 262.881);
-  --chart-4: oklch(0.488 0.243 264.376);
-  --chart-5: oklch(0.424 0.199 265.638);
+  --border: oklch(0.91 0.01 250);
+  --input: oklch(0.91 0.01 250);
+  --ring: oklch(0.55 0.12 255);
+  --chart-1: oklch(0.72 0.14 230);
+  --chart-2: oklch(0.62 0.18 250);
+  --chart-3: oklch(0.55 0.22 275);
+  --chart-4: oklch(0.50 0.18 300);
+  --chart-5: oklch(0.65 0.15 195);
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar: oklch(0.97 0.005 250);
+  --sidebar-foreground: oklch(0.13 0.028 265);
+  --sidebar-primary: oklch(0.18 0.028 265);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar-accent: oklch(0.94 0.015 255);
+  --sidebar-accent-foreground: oklch(0.18 0.028 265);
+  --sidebar-border: oklch(0.91 0.01 250);
+  --sidebar-ring: oklch(0.55 0.12 255);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: #8b47ea;
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.371 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.809 0.105 251.813);
-  --chart-2: oklch(0.623 0.214 259.815);
-  --chart-3: oklch(0.546 0.245 262.881);
-  --chart-4: oklch(0.488 0.243 264.376);
-  --chart-5: oklch(0.424 0.199 265.638);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  /* ══════════════════════════════════════════════════════════════
+     SPACE BLUE DARK THEME — AI Illuminating Intelligent Civilization
+     Deep navies, cosmic blues, with cyan/gold AI accent glows
+     ══════════════════════════════════════════════════════════════ */
+
+  /* Deep space background — almost black with a navy tint */
+  --background: oklch(0.09 0.03 265);
+  /* Text: cool white with a slight blue cast */
+  --foreground: oklch(0.93 0.02 250);
+
+  /* Cards: slightly lighter than bg, like a nebula layer */
+  --card: oklch(0.13 0.035 265);
+  --card-foreground: oklch(0.93 0.02 250);
+
+  /* Popovers: same cosmic card treatment */
+  --popover: oklch(0.13 0.035 265);
+  --popover-foreground: oklch(0.93 0.02 250);
+
+  /* Primary: vivid AI cyan — the light of intelligence */
+  --primary: #00e5ff;
+  --primary-foreground: oklch(0.10 0.03 265);
+
+  /* Secondary: muted space blue */
+  --secondary: oklch(0.18 0.04 260);
+  --secondary-foreground: oklch(0.88 0.015 250);
+
+  /* Muted: dim starlight */
+  --muted: oklch(0.18 0.04 260);
+  --muted-foreground: oklch(0.58 0.03 250);
+
+  /* Accent: nebula purple glow */
+  --accent: oklch(0.24 0.06 280);
+  --accent-foreground: oklch(0.90 0.02 250);
+
+  /* Destructive: red dwarf */
+  --destructive: oklch(0.70 0.18 25);
+
+  /* Borders: faint starline traces */
+  --border: oklch(0.25 0.04 265 / 40%);
+  --input: oklch(0.25 0.04 265 / 50%);
+
+  /* Ring: AI cyan glow */
+  --ring: oklch(0.72 0.14 195);
+
+  /* Chart palette: cosmic spectrum */
+  --chart-1: oklch(0.72 0.14 195);
+  --chart-2: oklch(0.62 0.20 250);
+  --chart-3: oklch(0.58 0.22 280);
+  --chart-4: oklch(0.65 0.16 310);
+  --chart-5: oklch(0.75 0.12 170);
+
+  /* Sidebar: deep space panel */
+  --sidebar: oklch(0.11 0.03 265);
+  --sidebar-foreground: oklch(0.93 0.02 250);
+  --sidebar-primary: oklch(0.72 0.14 195);
+  --sidebar-primary-foreground: oklch(0.10 0.03 265);
+  --sidebar-accent: oklch(0.18 0.04 260);
+  --sidebar-accent-foreground: oklch(0.88 0.015 250);
+  --sidebar-border: oklch(0.25 0.04 265 / 40%);
+  --sidebar-ring: oklch(0.72 0.14 195);
 }
 
 @layer base {
@@ -123,7 +164,17 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* ── Space Blue Global Enhancements ── */
+  .dark body {
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -20%, oklch(0.18 0.06 260 / 60%), transparent),
+      radial-gradient(ellipse 60% 40% at 80% 80%, oklch(0.14 0.05 290 / 30%), transparent),
+      radial-gradient(ellipse 50% 50% at 10% 60%, oklch(0.15 0.04 230 / 25%), transparent),
+      oklch(0.09 0.03 265);
+  }
 }
+
 /* ProseMirror Editor Styles */
 .prosemirror-editor {
   cursor: text;
@@ -131,7 +182,7 @@
 
 .prosemirror-editor.format-painter {
   cursor:
-    url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjYiIGhlaWdodD0iMTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTcuMzUuMDEybC0uMDY2Ljk5OGE1LjI3MSA1LjI3MSAwIDAwLTEuMTg0LjA2IDMuOCAzLjggMCAwMC0uOTMzLjQ3MmMtLjQ0LjM1Ni0uNzgzLjgxMS0uOTk4IDEuMzI0bC4wMTgtLjAzNnY1LjEySDEuMDR2Ljk4aC0xLjA0bC0uMDAyIDQuMTVjLjE4Ny40MjYuNDYuODEuNzkxIDEuMTE3bC4xNzUuMTUyYy4yOTMuMjA4LjYxNS4zNzMuODkuNDcyLjQxLjA4Mi44My4xMTIgMS4yNDkuMDlsLjA1Ny45OTlhNi4wNjMgNi4wNjMgMCAwMS0xLjU4OC0uMTI5IDQuODM2IDQuODM2IDAgMDEtMS4yNS0uNjQ3IDQuNDYzIDQuNDYzIDAgMDEtLjgzOC0uODgzYy0uMjI0LjMzMi0uNS42NDItLjgyNC45MjdhNC4xMSA0LjExIDAgMDEtMS4zMDUuNjMzQTYuMTI2IDYuMTI2IDAgMDEwIDE1LjkwOWwuMDY4LS45OTdjLjQyNC4wMjYuODUtLjAwMSAxLjIxNy0uMDcuMzM2LS4wOTkuNjUxLS4yNTQuODk0LS40My40My0uMzguNzY1LS44NDcuOTgyLTEuMzY4bC0uMDA1LjAxNFY4LjkzSDIuMTE1di0uOThoMS4wNFYyLjg2MmEzLjc3IDMuNzcgMCAwMC0uNzc0LTEuMTY3bC0uMTY1LS4xNTZhMy4wNjQgMy4wNjQgMCAwMC0uODgtLjQ0OEE1LjA2MiA1LjA2MiAwIDAwLjA2NyAxLjAxTDAgLjAxMmE2LjE0IDYuMTQgMCAwMTEuNTkyLjExYy40NTMuMTM1Ljg3Ny4zNDUgMS4yOS42NS4zLjI2NS41NjUuNTY0Ljc4Ny44OS4yMzMtLjMzMS41Mi0uNjM0Ljg1My0uOTA0YTQuODM1IDQuODM1IDAgMDExLjMtLjY0OEE2LjE1NSA2LjE1NSAwIDAxNy4zNS4wMTJ6IiBmaWxsPSIjMEQwRDBEIi8+PHBhdGggZD0iTTE3LjM1IDE0LjVsNC41LTQuNS02LTZjLTIgMi0zIDItNS41IDIuNS40IDMuMiA0LjgzMyA2LjY2NyA3IDh6bTQuNTg4LTQuNDkzYS4zLjMgMCAwMC40MjQgMGwuNjgtLjY4YTEuNSAxLjUgMCAwMDAtMi4xMjJMMjEuNjkgNS44NTNsMi4wMjUtMS41ODNhMS42MjkgMS42MjkgMCAxMC0yLjI3OS0yLjI5NmwtMS42MDMgMi4wMjItMS4zNTctMS4zNTdhMS41IDEuNSAwIDAwLTIuMTIxIDBsLS42OC42OGEuMy4zIDAgMDAwIC40MjVsNi4yNjMgNi4yNjN6IiBmaWxsPSIjZmZmIi8+PHBhdGggZD0iTTE1Ljg5MiAzLjk2MnMtMS4wMyAxLjIwMi0yLjQ5NCAxLjg5Yy0xLjAwNi40NzQtMi4xOC41ODYtMi43MzQuNjI3LS4yLjAxNS0uMzQ0LjIxLS4yNzYuMzk5LjI5Mi44MiAxLjExMiAyLjggMi42NTggNC4zNDYgMi4xMjYgMi4xMjcgMy42NTggMi45NjggNC4xNDIgMy4yMDMuMS4wNDguMjE0LjAzLjI5OC0uMDQyLjM4Ni0uMzI1IDEuNS0xLjI3NyAyLjIxLTEuOTg2Ljg5Mi0uODg5IDIuMTg3LTIuNDQ3IDIuMTg3LTIuNDQ3bS40NzkuMDU1YS4zLjMgMCAwMS0uNDI0IDBsLTYuMjY0LTYuMjYzYS4zLjMgMCAwMTAtLjQyNWwuNjgtLjY4YTEuNSAxLjUgMCAwMTIuMTIyIDBsMS4zNTcgMS4zNTcgMS42MDMtMi4wMjJhMS42MjkgMS42MjkgMCAxMTIuMjggMi4yOTZMMjEuNjkgNS44NTNsMS4zNTIgMS4zNTJhMS41IDEuNSAwIDAxMCAyLjEyMmwtLjY4LjY4eiIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PC9zdmc+')
+    url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjYiIGhlaWdodD0iMTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTcuMzUuMDEybC0uMDY2Ljk5OGE1LjI3MSA1LjI3MSAwIDAwLTEuMTg0LjA2IDMuOCAzLjggMCAwMC0uOTMzLjQ3MmMtLjQ0LjM1Ni0uNzgzLjgxMS0uOTk4IDEuMzI0bC4wMTgtLjAzNnY1LjEySDEuMDR2Ljk4aC0xLjA0bC0uMDAyIDQuMTVjLjE4Ny40MjYuNDYuODEuNzkxIDEuMTE3bC4xNzUuMTUyYy4yOTMuMjA4LjYxNS4zNzMuODkuNDcyLjQxLjA4Mi44My4xMTIgMS4yNDkuMDlsLjA1Ny45OTlhNi4wNjMgNi4wNjMgMCAwMS0xLjU4OC0uMTI5IDQuODM2IDQuODM2IDAgMDEtMS4yNS0uNjQ3IDQuNDYzIDQuNDYzIDAgMDEtLjgzOC0uODgzYy0uMjI0LjMzMi0uNS42NDItLjgyNC45MjdhNC4xMSA0LjExIDAgMDEtMS4zMDUuNjMzQTYuMTI2IDYuMTI2IDAgMDEwIDE1LjkwOWwuMDY4LS45OTdjLjQyNC4wMjYuODUtLjAwMSAxLjIxNy0uMDcuMzM2LS4wOTkuNjUxLS4yNTQuODk0LS40My40My0uMzguNzY1LS44NDcuOTgyLTEuMzY4bC0uMDA1LjAxNFY4LjkzSDIuMTE1di0uOThoMS4wNFYyLjg2MmEzLjc3IDMuNzcgMCAwMC0uNzc0LTEuMTY3bC0uMTY1LS4xNTZhMy4wNjQgMy4wNjQgMCAwMC0uODgtLjQ0OEE1LjA2MiA1LjA2MiAwIDAwLjA2NyAxLjAxTDAgLjAxMmE2LjE0IDYuMTQgMCAwMTEuNTkyLjExYy40NTMuMTM1Ljg3Ny4zNDUgMS4yOS42NS4zLjI2NS41NjUuNTY0Ljc4Ny44OS4yMzMtLjMzMS41Mi0uNjM0Ljg1My0uOTA0YTQuODM1IDQuODM1IDAgMDExLjMtLjY0OEE2LjE1NSA2LjE1NSAwIDAxNy4zNS4wMTJ6IiBmaWxsPSIjMEQwRDBEIi8+PHBhdGggZD0iTTcuMzUgMTQuNWw0LjUtNC41LTYtNmMtMiAyLTMgMi01LjUgMi41LjQgMy4yIDQuODMzIDYuNjY3IDcgOHptNC41ODgtNC40OTNhLjMuMyAwIDAwLjQyNCAwbC42OC0uNjhhMS41IDEuNSAwIDAwMC0yLjEyMkwyMS42OSA1Ljg1M2wyLjAyNS0xLjU4M2ExLjYyOSAxLjYyOSAwIDEwLTIuMjc5LTIuMjk2bC0xLjYwMyAyLjAyMi0xLjM1Ny0xLjM1N2ExLjUgMS41IDAgMDAtMi4xMjEgMGwtLjY4LjY4YS4zLjMgMCAwMDAgLjQyNWw2LjI2MyA2LjI2M3oiIGZpbGw9IiNmZmYiLz48cGF0aCBkPSJNMTUuODkyIDMuOTYycy0xLjAzIDEuMjAyLTIuNDk0IDEuODljLTEuMDA2LjQ3NC0yLjE4LjU4Ni0yLjczNC42MjctLjIuMDE1LS4zNDQuMjEtLjI3Ni4zOTkuMjkyLjgyIDEuMTEyIDIuOCAyLjY1OCA0LjM0NiAyLjEyNiAyLjEyNyAzLjY1OCAyLjk2OCA0LjE0MiAzLjIwMy4xLjA0OC4yMTQuMDMuMjk4LS4wNDIuMzg2LS4zMjUgMS41LTEuMjc3IDIuMjEtMS45ODYuODkyLS44ODkgMi4xODctMi40NDcgMi4xODctMi40NDdsLjQ3OS4wNTVhLjMuMyAwIDAxLS40MjQgMGwtNi4yNjQtNi4yNjNhLjMuMyAwIDAxMC0uNDI1bC42OC0uNjhhMS41IDEuNSAwIDAxMi4xMjIgMGwxLjM1NyAxLjM1N2ExLjUgMS41IDAgMDEyLjEyMSAwbC42OC0uNjhhLjMuMyAwIDAwMC0uNDI1bC0uNjgtLjY4YTEuNSAxLjUgMCAwMC0yLjEyMSAwbC0xLjM1NyAxLjM1N2ExLjUgMS41IDAgMDEtMi4xMjEgMGwtLjY4LS42OGEuMy4zIDAgMDEwLS40MjVsLjY4LS42OGExLjUgMS41IDAgMDEyLjEyMiAwbDEuMzU3IDEuMzU3YTEuNSAxLjUgMCAwMDIuMTIxIDBsLjY4LS42OGEuMy4zIDAgMDAtLjQyNCAwbC02LjI2My02LjI2M3oiIGZpbGw9IiNmZmYiLz48L3N2Zz4=')
       2 5,
     default !important;
 }
@@ -193,4 +244,102 @@
   100% {
     transform: translateX(100%);
   }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SPACE THEME — Custom Animations & Utilities
+   ══════════════════════════════════════════════════════════════ */
+
+/* AI intelligence pulse — a slow breathing glow */
+@keyframes ai-pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+/* Starfield twinkle */
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Nebula drift — slow floating movement */
+@keyframes nebula-drift {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(10px, -15px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-5px, -25px) rotate(-0.5deg);
+  }
+  75% {
+    transform: translate(-15px, -10px) rotate(0.5deg);
+  }
+}
+
+/* AI light beam sweep */
+@keyframes light-beam {
+  0% {
+    transform: translateX(-100%) skewX(-15deg);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateX(200%) skewX(-15deg);
+    opacity: 0;
+  }
+}
+
+/* Cosmic float for cards */
+@keyframes cosmic-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+/* Utility: AI glow on an element */
+@utility ai-glow {
+  box-shadow:
+    0 0 15px oklch(0.72 0.14 195 / 15%),
+    0 0 30px oklch(0.72 0.14 195 / 8%),
+    inset 0 1px 0 oklch(0.95 0.05 250 / 10%);
+}
+
+/* AI glow on focus/hover */
+@utility ai-glow-focus {
+  box-shadow:
+    0 0 20px oklch(0.72 0.14 195 / 25%),
+    0 0 40px oklch(0.72 0.14 195 / 12%),
+    0 0 60px oklch(0.72 0.14 195 / 6%);
+}
+
+/* Starfield dot utility */
+@utility starfield {
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, oklch(0.9 0.02 250 / 60%), transparent),
+    radial-gradient(1px 1px at 30% 65%, oklch(0.85 0.04 200 / 50%), transparent),
+    radial-gradient(1.5px 1.5px at 55% 15%, oklch(0.92 0.06 195 / 70%), transparent),
+    radial-gradient(1px 1px at 70% 80%, oklch(0.88 0.03 280 / 45%), transparent),
+    radial-gradient(1px 1px at 85% 35%, oklch(0.85 0.04 250 / 55%), transparent),
+    radial-gradient(1.5px 1.5px at 45% 45%, oklch(0.90 0.08 195 / 60%), transparent),
+    radial-gradient(1px 1px at 20% 90%, oklch(0.82 0.02 250 / 40%), transparent),
+    radial-gradient(1px 1px at 60% 70%, oklch(0.86 0.05 200 / 50%), transparent),
+    radial-gradient(1px 1px at 90% 55%, oklch(0.84 0.03 280 / 45%), transparent),
+    radial-gradient(1.5px 1.5px at 5% 50%, oklch(0.90 0.06 195 / 55%), transparent);
 }

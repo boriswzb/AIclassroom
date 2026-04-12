@@ -18,6 +18,19 @@ import {
   Monitor,
   BotOff,
   ChevronUp,
+  Sparkles,
+  Brain,
+  Cpu,
+  Database,
+  Network,
+  Code2,
+  Wand2,
+  FlaskConical,
+  Shrink,
+  Mic2,
+  Rocket,
+  ArrowRight,
+  GraduationCap,
 } from 'lucide-react';
 import { useI18n } from '@/lib/hooks/use-i18n';
 import { LanguageSwitcher } from '@/components/language-switcher';
@@ -161,8 +174,6 @@ function HomePage() {
 
   useEffect(() => {
     // Clear stale media store to prevent cross-course thumbnail contamination.
-    // The store may hold tasks from a previously visited classroom whose elementIds
-    // (gen_img_1, etc.) collide with other courses' placeholders.
     useMediaGenerationStore.getState().revokeObjectUrls();
     useMediaGenerationStore.setState({ tasks: {} });
 
@@ -211,25 +222,25 @@ function HomePage() {
     toast.custom(
       (id) => (
         <div
-          className="w-[356px] rounded-xl border border-amber-200/60 dark:border-amber-800/40 bg-gradient-to-r from-amber-50 via-white to-amber-50 dark:from-amber-950/60 dark:via-slate-900 dark:to-amber-950/60 shadow-lg shadow-amber-500/8 dark:shadow-amber-900/20 p-4 flex items-start gap-3 cursor-pointer"
+          className="w-[356px] rounded-xl border border-ai-cyan/20 dark:border-ai-cyan/20 bg-gradient-to-r from-blue-50 via-white to-cyan-50 dark:from-space-700 dark:via-space-800 dark:to-space-700 shadow-lg shadow-ai-cyan/10 p-4 flex items-start gap-3 cursor-pointer"
           onClick={() => {
             toast.dismiss(id);
             setSettingsOpen(true);
           }}
         >
-          <div className="shrink-0 mt-0.5 size-9 rounded-lg bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center ring-1 ring-amber-200/50 dark:ring-amber-800/30">
+          <div className="shrink-0 mt-0.5 size-9 rounded-lg bg-ai-cyan/10 dark:bg-ai-cyan/20 flex items-center justify-center ring-1 ring-ai-cyan/30">
             {icon}
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-semibold text-amber-900 dark:text-amber-200 leading-tight">
+            <p className="text-sm font-semibold text-blue-900 dark:text-ai-cyan leading-tight">
               {title}
             </p>
-            <p className="text-xs text-amber-700/80 dark:text-amber-400/70 mt-0.5 leading-relaxed">
+            <p className="text-xs text-blue-700/60 dark:text-ai-cyan/60 mt-0.5 leading-relaxed">
               {desc}
             </p>
           </div>
-          <div className="shrink-0 mt-1 text-[10px] font-medium text-amber-500 dark:text-amber-500/70 tracking-wide">
-            <Settings className="size-3.5 animate-[spin_3s_linear_infinite]" />
+          <div className="shrink-0 mt-1">
+            <Settings className="size-3.5 text-ai-cyan/60 animate-[spin_3s_linear_infinite]" />
           </div>
         </div>
       ),
@@ -241,7 +252,7 @@ function HomePage() {
     // Validate setup before proceeding
     if (!currentModelId) {
       showSetupToast(
-        <BotOff className="size-4.5 text-amber-600 dark:text-amber-400" />,
+        <BotOff className="size-4.5 text-ai-blue dark:text-ai-cyan" />,
         t('settings.modelNotConfigured'),
         t('settings.setupNeeded'),
       );
@@ -330,16 +341,16 @@ function HomePage() {
   };
 
   return (
-    <div className="min-h-[100dvh] w-full bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 flex flex-col items-center p-4 pt-16 md:p-8 md:pt-16 overflow-x-hidden">
-      {/* ═══ Top-right pill (unchanged) ═══ */}
+    <div className="min-h-[100dvh] w-full bg-gradient-to-b from-slate-50 via-blue-50/30 to-slate-100 dark:from-space-900 dark:via-[#050d1f] dark:to-space-800 flex flex-col items-center p-4 pt-16 md:p-8 md:pt-16 overflow-x-hidden relative">
+      {/* ═══ Top-right pill ═══ */}
       <div
         ref={toolbarRef}
-        className="fixed top-4 right-4 z-50 flex items-center gap-1 bg-white/60 dark:bg-gray-800/60 backdrop-blur-md px-2 py-1.5 rounded-full border border-gray-100/50 dark:border-gray-700/50 shadow-sm"
+        className="fixed top-4 right-4 z-50 flex items-center gap-1 bg-white/60 dark:bg-space-700/60 backdrop-blur-md px-2 py-1.5 rounded-full border border-border/50 dark:border-ai-cyan/10 shadow-sm dark:shadow-ai-cyan/5"
       >
         {/* Language Selector */}
         <LanguageSwitcher onOpen={() => setThemeOpen(false)} />
 
-        <div className="w-[1px] h-4 bg-gray-200 dark:bg-gray-700" />
+        <div className="w-[1px] h-4 bg-border/40 dark:bg-ai-cyan/15" />
 
         {/* Theme Selector */}
         <div className="relative">
@@ -347,23 +358,23 @@ function HomePage() {
             onClick={() => {
               setThemeOpen(!themeOpen);
             }}
-            className="p-2 rounded-full text-gray-400 dark:text-gray-500 hover:bg-white dark:hover:bg-gray-700 hover:text-gray-800 dark:hover:text-gray-200 hover:shadow-sm transition-all"
+            className="p-2 rounded-full text-muted-foreground hover:bg-accent dark:hover:bg-space-600 hover:text-foreground transition-all"
           >
             {theme === 'light' && <Sun className="w-4 h-4" />}
             {theme === 'dark' && <Moon className="w-4 h-4" />}
             {theme === 'system' && <Monitor className="w-4 h-4" />}
           </button>
           {themeOpen && (
-            <div className="absolute top-full mt-2 right-0 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg overflow-hidden z-50 min-w-[140px]">
+            <div className="absolute top-full mt-2 right-0 bg-popover border border-border rounded-lg shadow-lg overflow-hidden z-50 min-w-[140px]">
               <button
                 onClick={() => {
                   setTheme('light');
                   setThemeOpen(false);
                 }}
                 className={cn(
-                  'w-full px-4 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center gap-2',
+                  'w-full px-4 py-2 text-left text-sm hover:bg-accent transition-colors flex items-center gap-2',
                   theme === 'light' &&
-                    'bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400',
+                    'bg-ai-blue/10 text-ai-blue dark:bg-ai-cyan/10 dark:text-ai-cyan',
                 )}
               >
                 <Sun className="w-4 h-4" />
@@ -375,9 +386,9 @@ function HomePage() {
                   setThemeOpen(false);
                 }}
                 className={cn(
-                  'w-full px-4 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center gap-2',
+                  'w-full px-4 py-2 text-left text-sm hover:bg-accent transition-colors flex items-center gap-2',
                   theme === 'dark' &&
-                    'bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400',
+                    'bg-ai-blue/10 text-ai-blue dark:bg-ai-cyan/10 dark:text-ai-cyan',
                 )}
               >
                 <Moon className="w-4 h-4" />
@@ -389,9 +400,9 @@ function HomePage() {
                   setThemeOpen(false);
                 }}
                 className={cn(
-                  'w-full px-4 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center gap-2',
+                  'w-full px-4 py-2 text-left text-sm hover:bg-accent transition-colors flex items-center gap-2',
                   theme === 'system' &&
-                    'bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400',
+                    'bg-ai-blue/10 text-ai-blue dark:bg-ai-cyan/10 dark:text-ai-cyan',
                 )}
               >
                 <Monitor className="w-4 h-4" />
@@ -401,13 +412,13 @@ function HomePage() {
           )}
         </div>
 
-        <div className="w-[1px] h-4 bg-gray-200 dark:bg-gray-700" />
+        <div className="w-[1px] h-4 bg-border/40 dark:bg-ai-cyan/15" />
 
         {/* Settings Button */}
         <div className="relative">
           <button
             onClick={() => setSettingsOpen(true)}
-            className="p-2 rounded-full text-gray-400 dark:text-gray-500 hover:bg-white dark:hover:bg-gray-700 hover:text-gray-800 dark:hover:text-gray-200 hover:shadow-sm transition-all group"
+            className="p-2 rounded-full text-muted-foreground hover:bg-accent dark:hover:bg-space-600 hover:text-foreground transition-all group"
           >
             <Settings className="w-4 h-4 group-hover:rotate-90 transition-transform duration-500" />
           </button>
@@ -422,19 +433,102 @@ function HomePage() {
         initialSection={settingsSection}
       />
 
-      {/* ═══ Background Decor ═══ */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* ═══ Background Decor — Deep Space + AI Light ═══ */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none dark:block">
+        {/* Nebula clouds */}
         <div
-          className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"
-          style={{ animationDuration: '4s' }}
+          className="absolute -top-[10%] left-[10%] w-[600px] h-[600px] opacity-100 dark:opacity-100 rounded-full blur-3xl animate-[nebula-drift_20s_ease-in-out_infinite]"
+          style={{
+            background: 'radial-gradient(circle, oklch(0.18 0.06 260 / 40%) 0%, transparent 70%)',
+          }}
         />
         <div
-          className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"
-          style={{ animationDuration: '6s' }}
+          className="absolute top-[30%] -right-[5%] w-[500px] h-[500px] opacity-100 dark:opacity-100 rounded-full blur-3xl animate-[nebula-drift_25s_ease-in-out_infinite_reverse]"
+          style={{
+            background: 'radial-gradient(circle, oklch(0.16 0.055 290 / 30%) 0%, transparent 70%)',
+            animationDelay: '-5s',
+          }}
         />
+        <div
+          className="absolute -bottom-[10%] left-[30%] w-[550px] h-[550px] opacity-100 dark:opacity-80 rounded-full blur-3xl animate-[nebula-drift_22s_ease-in-out_infinite]"
+          style={{
+            background: 'radial-gradient(circle, oklch(0.15 0.045 230 / 25%) 0%, transparent 70%)',
+            animationDelay: '-10s',
+          }}
+        />
+
+        {/* AI illumination source — top center, like a neural star */}
+        <div
+          className="absolute top-[5%] left-1/2 -translate-x-1/2 w-[300px] h-[300px] rounded-full blur-3xl animate-[ai-pulse_6s_ease-in-out_infinite]"
+          style={{
+            background: 'radial-gradient(circle, oklch(0.72 0.14 195 / 18%) 0%, oklch(0.5 0.1 250 / 8%) 40%, transparent 70%)',
+          }}
+        />
+
+        {/* Secondary AI glow — warm gold accent suggesting civilization */}
+        <div
+          className="absolute top-[8%] right-[15%] w-[200px] h-[200px] rounded-full blur-3xl animate-[ai-pulse_8s_ease-in-out_infinite]"
+          style={{
+            background: 'radial-gradient(circle, oklch(0.80 0.08 90 / 12%) 0%, oklch(0.5 0.05 250 / 5%) 50%, transparent 70%)',
+            animationDelay: '-3s',
+          }}
+        />
+
+        {/* Light mode: subtle blue accents */}
+        <div className="dark:hidden absolute -top-[10%] left-[10%] w-[400px] h-[400px] bg-blue-400/10 rounded-full blur-3xl" />
+        <div className="dark:hidden absolute -bottom-[10%] right-[10%] w-[400px] h-[400px] bg-cyan-300/8 rounded-full blur-3xl" />
+
+        {/* Starfield overlay (dark mode only) */}
+        <div className="hidden dark:block absolute inset-0 starfield opacity-60" />
+
+        {/* Floating AI particles — tiny dots that suggest intelligence network */}
+        <div className="hidden dark:block">
+          {[...Array(6)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 rounded-full bg-ai-cyan/40"
+              style={{
+                top: `${15 + i * 14}%`,
+                left: `${10 + (i * 17) % 80}%`,
+                animation: `twinkle ${3 + i * 0.7}s ease-in-out infinite`,
+                animationDelay: `${i * 0.5}s`,
+              }}
+            />
+          ))}
+          {[...Array(4)].map((_, i) => (
+            <div
+              key={`gold-${i}`}
+              className="absolute w-0.5 h-0.5 rounded-full bg-ai-gold/30"
+              style={{
+                top: `${25 + i * 18}%`,
+                left: `${20 + (i * 23) % 60}%`,
+                animation: `twinkle ${4 + i * 1.2}s ease-in-out infinite`,
+                animationDelay: `${i * 1.1}s`,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* AI light beam — sweeps across periodically */}
+        <div className="hidden dark:block absolute top-0 left-0 w-full h-full overflow-hidden">
+          <div
+            className="absolute top-[20%] w-[200px] h-[1px] bg-gradient-to-r from-transparent via-ai-cyan/20 to-transparent"
+            style={{
+              animation: 'light-beam 8s ease-in-out infinite',
+              animationDelay: '2s',
+            }}
+          />
+          <div
+            className="absolute top-[50%] w-[150px] h-[1px] bg-gradient-to-r from-transparent via-ai-purple/15 to-transparent"
+            style={{
+              animation: 'light-beam 12s ease-in-out infinite',
+              animationDelay: '6s',
+            }}
+          />
+        </div>
       </div>
 
-      {/* ═══ Hero section: title + input (centered, wider) ═══ */}
+      {/* ═══ Hero section ═══ */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -445,9 +539,7 @@ function HomePage() {
         )}
       >
         {/* ── Logo ── */}
-        <motion.img
-          src="/logo-horizontal.png"
-          alt="OpenMAIC"
+        <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{
@@ -456,18 +548,67 @@ function HomePage() {
             stiffness: 200,
             damping: 20,
           }}
-          className="h-12 md:h-16 mb-2 -ml-2 md:-ml-3"
-        />
+          className="relative mb-2 -ml-2 md:-ml-3"
+        >
+          <img
+            src="/logo-horizontal.svg"
+            alt="我的AI课堂"
+            className="h-24 md:h-32"
+          />
+          {/* AI glow halo behind logo (dark mode) */}
+          <div className="dark:block hidden absolute inset-0 -m-4 rounded-full bg-ai-cyan/5 blur-xl -z-10" />
+        </motion.div>
 
         {/* ── Slogan ── */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.25 }}
-          className="text-sm text-muted-foreground/60 mb-8"
+          className="text-sm text-muted-foreground/60 mb-1 flex items-center gap-1.5"
         >
+          <Sparkles className="size-3 dark:text-ai-cyan/40" />
           {t('home.slogan')}
+          <Sparkles className="size-3 dark:text-ai-cyan/40" />
         </motion.p>
+
+        {/* ── AI Civilization tagline (dark mode only) ── */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.35 }}
+          className="hidden dark:block text-[11px] tracking-[0.3em] uppercase text-ai-cyan/30 mb-2 font-mono"
+        >
+          AI Illuminating Intelligent Civilization
+        </motion.p>
+
+        {/* ── Top Navigation ── */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="flex items-center gap-3 mb-4"
+        >
+          <button
+            onClick={() => router.push('/practice')}
+            className="group px-4 py-2 rounded-full bg-gradient-to-r from-ai-cyan/20 to-ai-blue/20 dark:from-ai-cyan/30 dark:to-ai-purple/30 border border-ai-cyan/30 dark:border-ai-cyan/50 hover:border-ai-cyan/60 dark:hover:border-ai-cyan/80 hover:shadow-lg hover:shadow-ai-cyan/20 transition-all duration-300"
+          >
+            <span className="text-sm font-medium text-slate-700 dark:text-ai-cyan group-hover:text-ai-cyan transition-colors flex items-center gap-2">
+              <Brain className="w-4 h-4" />
+              AI实战
+              <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </span>
+          </button>
+          <button
+            onClick={() => router.push('/classroom')}
+            className="group px-4 py-2 rounded-full bg-white/80 dark:bg-space-800/80 border border-border/60 dark:border-ai-cyan/20 hover:border-ai-cyan/40 hover:shadow-lg transition-all duration-300"
+          >
+            <span className="text-sm font-medium text-slate-600 dark:text-slate-300 group-hover:text-ai-cyan transition-colors flex items-center gap-2">
+              <GraduationCap className="w-4 h-4" />
+              我的课堂
+              <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </span>
+          </button>
+        </motion.div>
 
         {/* ── Unified input area ── */}
         <motion.div
@@ -476,7 +617,17 @@ function HomePage() {
           transition={{ delay: 0.35 }}
           className="w-full"
         >
-          <div className="w-full rounded-2xl border border-border/60 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-xl shadow-black/[0.03] dark:shadow-black/20 transition-shadow focus-within:shadow-2xl focus-within:shadow-violet-500/[0.06]">
+          <div className="w-full rounded-2xl border border-border/60 dark:border-ai-cyan/10 bg-white/80 dark:bg-space-800/70 backdrop-blur-xl shadow-xl shadow-black/[0.03] dark:shadow-ai-cyan/[0.03] dark:ai-glow transition-shadow focus-within:shadow-2xl focus-within:dark:ai-glow-focus focus-within:shadow-ai-blue/[0.06] dark:focus-within:shadow-ai-cyan/[0.08]">
+            {/* AI light sweep across top edge */}
+            <div className="dark:block hidden absolute top-0 left-0 right-0 h-px rounded-t-2xl overflow-hidden">
+              <div
+                className="h-full w-1/3 bg-gradient-to-r from-transparent via-ai-cyan/40 to-transparent"
+                style={{
+                  animation: 'light-beam 6s ease-in-out infinite',
+                }}
+              />
+            </div>
+
             {/* ── Greeting + Profile + Agents ── */}
             <div className="relative z-20 flex items-start justify-between">
               <GreetingBar />
@@ -526,14 +677,14 @@ function HomePage() {
                 }}
               />
 
-              {/* Send button */}
+              {/* Send button — AI cyan accent */}
               <button
                 onClick={handleGenerate}
                 disabled={!canGenerate}
                 className={cn(
                   'shrink-0 h-8 rounded-lg flex items-center justify-center gap-1.5 transition-all px-3',
                   canGenerate
-                    ? 'bg-primary text-primary-foreground hover:opacity-90 shadow-sm cursor-pointer'
+                    ? 'bg-primary text-primary-foreground hover:opacity-90 shadow-sm dark:shadow-ai-cyan/20 cursor-pointer'
                     : 'bg-muted text-muted-foreground/40 cursor-not-allowed',
                 )}
               >
@@ -580,7 +731,7 @@ function HomePage() {
             }}
             className="group w-full flex items-center gap-4 py-2 cursor-pointer"
           >
-            <div className="flex-1 h-px bg-border/40 group-hover:bg-border/70 transition-colors" />
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border/60 to-border/40 group-hover:via-ai-cyan/30 dark:group-hover:via-ai-cyan/20 transition-colors" />
             <span className="shrink-0 flex items-center gap-2 text-[13px] text-muted-foreground/60 group-hover:text-foreground/70 transition-colors select-none">
               <Clock className="size-3.5" />
               {t('classroom.recentClassrooms')}
@@ -592,7 +743,7 @@ function HomePage() {
                 <ChevronDown className="size-3.5" />
               </motion.div>
             </span>
-            <div className="flex-1 h-px bg-border/40 group-hover:bg-border/70 transition-colors" />
+            <div className="flex-1 h-px bg-gradient-to-l from-transparent via-border/60 to-border/40 group-hover:via-ai-cyan/30 dark:group-hover:via-ai-cyan/20 transition-colors" />
           </button>
 
           {/* Expandable content */}
@@ -637,15 +788,20 @@ function HomePage() {
         </motion.div>
       )}
 
-      {/* Footer — flows with content, at the very end */}
-      <div className="mt-auto pt-12 pb-4 text-center text-xs text-muted-foreground/40">
-        OpenMAIC Open Source Project
+      {/* Footer */}
+      <div className="mt-auto pt-12 pb-4 text-center">
+        <p className="text-xs text-muted-foreground/30 dark:text-ai-cyan/15 tracking-wider">
+          我的AI课堂 开源项目
+        </p>
+        <p className="hidden dark:block text-[9px] text-ai-cyan/10 mt-1 tracking-[0.2em] uppercase font-mono">
+          AI Illuminating Intelligent Civilization
+        </p>
       </div>
     </div>
   );
 }
 
-// ─── Greeting Bar — avatar + "Hi, Name", click to edit in-place ────
+// ─── Greeting Bar ────
 const MAX_AVATAR_SIZE = 5 * 1024 * 1024;
 
 function isCustomAvatar(src: string) {
@@ -737,17 +893,17 @@ function GreetingBar() {
         onChange={handleAvatarUpload}
       />
 
-      {/* ── Collapsed pill (always in flow) ── */}
+      {/* ── Collapsed pill ── */}
       {!open && (
         <div
-          className="flex items-center gap-2.5 cursor-pointer transition-all duration-200 group rounded-full px-2.5 py-1.5 border border-border/50 text-muted-foreground/70 hover:text-foreground hover:bg-muted/60 active:scale-[0.97]"
+          className="flex items-center gap-2.5 cursor-pointer transition-all duration-200 group rounded-full px-2.5 py-1.5 border border-border/50 dark:border-ai-cyan/10 text-muted-foreground/70 hover:text-foreground hover:bg-muted/60 dark:hover:bg-space-700/60 active:scale-[0.97]"
           onClick={() => setOpen(true)}
         >
           <div className="shrink-0 relative">
-            <div className="size-8 rounded-full overflow-hidden ring-[1.5px] ring-border/30 group-hover:ring-violet-400/60 dark:group-hover:ring-violet-400/40 transition-all duration-300">
+            <div className="size-8 rounded-full overflow-hidden ring-[1.5px] ring-border/30 group-hover:ring-ai-blue/50 dark:group-hover:ring-ai-cyan/40 transition-all duration-300">
               <img src={avatar} alt="" className="size-full object-cover" />
             </div>
-            <div className="absolute -bottom-0.5 -right-0.5 size-3.5 rounded-full bg-white dark:bg-slate-800 border border-border/40 flex items-center justify-center opacity-60 group-hover:opacity-100 transition-opacity">
+            <div className="absolute -bottom-0.5 -right-0.5 size-3.5 rounded-full bg-white dark:bg-space-700 border border-border/40 flex items-center justify-center opacity-60 group-hover:opacity-100 transition-opacity">
               <Pencil className="size-[7px] text-muted-foreground/70" />
             </div>
           </div>
@@ -769,7 +925,7 @@ function GreetingBar() {
         </div>
       )}
 
-      {/* ── Expanded panel (absolute, floating) ── */}
+      {/* ── Expanded panel ── */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -779,7 +935,7 @@ function GreetingBar() {
             transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
             className="absolute left-4 top-3.5 z-50 w-64"
           >
-            <div className="rounded-2xl bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm ring-1 ring-black/[0.04] dark:ring-white/[0.06] shadow-[0_1px_8px_-2px_rgba(0,0,0,0.06)] dark:shadow-[0_1px_8px_-2px_rgba(0,0,0,0.3)] px-2.5 py-2">
+            <div className="rounded-2xl bg-white/95 dark:bg-space-700/95 backdrop-blur-sm ring-1 ring-black/[0.04] dark:ring-ai-cyan/10 shadow-[0_1px_8px_-2px_rgba(0,0,0,0.06)] dark:shadow-ai-cyan/5 px-2.5 py-2">
               {/* ── Row: avatar + name ── */}
               <div
                 className="flex items-center gap-2.5 cursor-pointer transition-all duration-200"
@@ -797,13 +953,13 @@ function GreetingBar() {
                     setAvatarPickerOpen(!avatarPickerOpen);
                   }}
                 >
-                  <div className="size-8 rounded-full overflow-hidden ring-[1.5px] ring-violet-300/70 dark:ring-violet-500/40 transition-all duration-300">
+                  <div className="size-8 rounded-full overflow-hidden ring-[1.5px] ring-ai-blue/40 dark:ring-ai-cyan/40 transition-all duration-300">
                     <img src={avatar} alt="" className="size-full object-cover" />
                   </div>
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    className="absolute -bottom-0.5 -right-0.5 size-3.5 rounded-full bg-white dark:bg-slate-800 border border-border/60 flex items-center justify-center"
+                    className="absolute -bottom-0.5 -right-0.5 size-3.5 rounded-full bg-white dark:bg-space-700 border border-border/60 flex items-center justify-center"
                   >
                     <ChevronDown
                       className={cn(
@@ -835,7 +991,7 @@ function GreetingBar() {
                       />
                       <button
                         onClick={commitName}
-                        className="shrink-0 size-5 rounded flex items-center justify-center text-violet-500 hover:bg-violet-100 dark:hover:bg-violet-900/30"
+                        className="shrink-0 size-5 rounded flex items-center justify-center text-ai-blue dark:text-ai-cyan hover:bg-ai-blue/10 dark:hover:bg-ai-cyan/20"
                       >
                         <Check className="size-3" />
                       </button>
@@ -884,10 +1040,10 @@ function GreetingBar() {
                             key={url}
                             onClick={() => setAvatar(url)}
                             className={cn(
-                              'size-7 rounded-full overflow-hidden bg-gray-50 dark:bg-gray-800 cursor-pointer transition-all duration-150',
+                              'size-7 rounded-full overflow-hidden bg-muted dark:bg-space-600 cursor-pointer transition-all duration-150',
                               'hover:scale-110 active:scale-95',
                               avatar === url
-                                ? 'ring-2 ring-violet-400 dark:ring-violet-500 ring-offset-0'
+                                ? 'ring-2 ring-ai-blue dark:ring-ai-cyan ring-offset-0'
                                 : 'hover:ring-1 hover:ring-muted-foreground/30',
                             )}
                           >
@@ -899,7 +1055,7 @@ function GreetingBar() {
                             'size-7 rounded-full flex items-center justify-center cursor-pointer transition-all duration-150 border border-dashed',
                             'hover:scale-110 active:scale-95',
                             isCustomAvatar(avatar)
-                              ? 'ring-2 ring-violet-400 dark:ring-violet-500 ring-offset-0 border-violet-300 dark:border-violet-600 bg-violet-50 dark:bg-violet-900/30'
+                              ? 'ring-2 ring-ai-blue dark:ring-ai-cyan ring-offset-0 border-ai-blue/40 dark:border-ai-cyan/40 bg-ai-blue/10 dark:bg-ai-cyan/10'
                               : 'border-muted-foreground/30 text-muted-foreground/50 hover:border-muted-foreground/50',
                           )}
                           onClick={() => avatarInputRef.current?.click()}
@@ -919,7 +1075,7 @@ function GreetingBar() {
                   placeholder={t('profile.bioPlaceholder')}
                   maxLength={200}
                   rows={2}
-                  className="resize-none border-border/40 bg-transparent min-h-[72px] !text-[13px] !leading-relaxed placeholder:!text-[11px] placeholder:!leading-relaxed focus-visible:ring-1 focus-visible:ring-border/60"
+                  className="resize-none border-border/40 bg-transparent min-h-[72px] !text-[13px] !leading-relaxed placeholder:!text-[11px] placeholder:!leading-relaxed focus-visible:ring-1 focus-visible:ring-ai-cyan/30"
                 />
               </div>
             </div>
@@ -930,7 +1086,7 @@ function GreetingBar() {
   );
 }
 
-// ─── Classroom Card — clean, minimal style ──────────────────────
+// ─── Classroom Card — space theme ──────────────────────
 function ClassroomCard({
   classroom,
   slide,
@@ -990,10 +1146,10 @@ function ClassroomCard({
 
   return (
     <div className="group cursor-pointer" onClick={confirmingDelete ? undefined : onClick}>
-      {/* Thumbnail — large radius, no border, subtle bg */}
+      {/* Thumbnail — space card style */}
       <div
         ref={thumbRef}
-        className="relative w-full aspect-[16/9] rounded-2xl bg-slate-100 dark:bg-slate-800/80 overflow-hidden transition-transform duration-200 group-hover:scale-[1.02]"
+        className="relative w-full aspect-[16/9] rounded-2xl bg-slate-100 dark:bg-space-700/60 overflow-hidden transition-all duration-200 group-hover:scale-[1.02] group-hover:dark:shadow-ai-cyan/10 group-hover:dark:ai-glow"
       >
         {slide && thumbWidth > 0 ? (
           <ThumbnailSlide
@@ -1004,11 +1160,16 @@ function ClassroomCard({
           />
         ) : !slide ? (
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="size-12 rounded-2xl bg-gradient-to-br from-violet-100 to-blue-100 dark:from-violet-900/30 dark:to-blue-900/30 flex items-center justify-center">
-              <span className="text-xl opacity-50">📄</span>
+            <div className="size-12 rounded-2xl bg-gradient-to-br from-blue-100 to-cyan-100 dark:from-ai-cyan/10 dark:to-ai-blue/10 flex items-center justify-center">
+              <span className="text-xl opacity-50">
+                <Sparkles className="size-5 dark:text-ai-cyan/40" />
+              </span>
             </div>
           </div>
         ) : null}
+
+        {/* Subtle scan line overlay in dark mode */}
+        <div className="hidden dark:block absolute inset-0 pointer-events-none bg-gradient-to-b from-ai-cyan/[0.02] via-transparent to-ai-cyan/[0.03] opacity-0 group-hover:opacity-100 transition-opacity" />
 
         {/* Delete — top-right, only on hover */}
         <AnimatePresence>
@@ -1077,7 +1238,8 @@ function ClassroomCard({
 
       {/* Info — outside the thumbnail */}
       <div className="mt-2.5 px-1 flex items-center gap-2">
-        <span className="shrink-0 inline-flex items-center rounded-full bg-violet-100 dark:bg-violet-900/30 px-2 py-0.5 text-[11px] font-medium text-violet-600 dark:text-violet-400">
+        <span className="shrink-0 inline-flex items-center gap-1 rounded-full bg-blue-100 dark:bg-ai-cyan/10 px-2 py-0.5 text-[11px] font-medium text-blue-600 dark:text-ai-cyan/80">
+          <Sparkles className="size-2.5 dark:text-ai-cyan/50" />
           {classroom.sceneCount} {t('classroom.slides')} · {formatDate(classroom.updatedAt)}
         </span>
         {editing ? (
@@ -1093,7 +1255,7 @@ function ClassroomCard({
               onBlur={commitRename}
               maxLength={100}
               placeholder={t('classroom.renamePlaceholder')}
-              className="w-full bg-transparent border-b border-violet-400/60 text-[15px] font-medium text-foreground/90 outline-none placeholder:text-muted-foreground/40"
+              className="w-full bg-transparent border-b border-ai-cyan/40 text-[15px] font-medium text-foreground/90 outline-none placeholder:text-muted-foreground/40"
             />
           </div>
         ) : (
