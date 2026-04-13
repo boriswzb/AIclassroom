@@ -1,76 +1,87 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { auth } from '@/lib/auth';
+import { createHmac, timingSafeEqual } from 'crypto';
 
-/** Convert string to Uint8Array */
-function encode(str: string): Uint8Array {
-  return new TextEncoder().encode(str);
-}
-
-/** Convert ArrayBuffer to hex string */
-function bufToHex(buf: ArrayBuffer): string {
-  return Array.from(new Uint8Array(buf))
-    .map((b) => b.toString(16).padStart(2, '0'))
-    .join('');
-}
-
-/** Verify an HMAC-signed token using Web Crypto API (Edge-compatible) */
-async function verifyToken(token: string, accessCode: string): Promise<boolean> {
+/** Verify an HMAC-signed token using Node.js crypto */
+function verifyToken(token: string, accessCode: string): boolean {
   const dotIndex = token.indexOf('.');
   if (dotIndex === -1) return false;
 
   const timestamp = token.substring(0, dotIndex);
   const signature = token.substring(dotIndex + 1);
 
-  const keyData = encode(accessCode);
-  const key = await crypto.subtle.importKey(
-    'raw',
-    keyData.buffer as ArrayBuffer,
-    { name: 'HMAC', hash: 'SHA-256' },
-    false,
-    ['sign'],
-  );
+  const expected = createHmac('sha256', accessCode).update(timestamp).digest('hex');
 
-  const data = encode(timestamp);
-  const expected = bufToHex(await crypto.subtle.sign('HMAC', key, data.buffer as ArrayBuffer));
-
-  // Constant-length comparison (not truly constant-time in JS, but sufficient here)
+  // Constant-length comparison
   if (signature.length !== expected.length) return false;
-  let mismatch = 0;
-  for (let i = 0; i < signature.length; i++) {
-    mismatch |= signature.charCodeAt(i) ^ expected.charCodeAt(i);
-  }
-  return mismatch === 0;
+  const sigBuffer = Buffer.from(signature);
+  const expectedBuffer = Buffer.from(expected);
+  return timingSafeEqual(sigBuffer, expectedBuffer);
 }
 
-export async function middleware(request: NextRequest) {
-  const accessCode = process.env.ACCESS_CODE;
-  if (!accessCode) {
-    return NextResponse.next();
-  }
-
+export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Whitelist: access-code endpoints, health check
-  if (pathname.startsWith('/api/access-code/') || pathname === '/api/health') {
+  // Paths that don't require authentication
+  const publicPaths = [
+    '/login',
+    '/api/auth',           // NextAuth endpoints
+    '/api/health',         // Health check
+    '/_next',              // Next.js internals
+    '/favicon.ico',
+    '/logos',              // Static logos
+  ];
+
+  // Check if path is public
+  const isPublicPath = publicPaths.some(path => pathname.startsWith(path));
+  
+  // Check access code authentication (existing logic)
+  const accessCode = process.env.ACCESS_CODE;
+  let accessCodeValid = false;
+  
+  if (accessCode) {
+    const cookie = request.cookies.get('openmaic_access');
+    if (cookie?.value) {
+      accessCodeValid = verifyToken(cookie.value, accessCode);
+    }
+  } else {
+    // No access code configured, treat as valid
+    accessCodeValid = true;
+  }
+
+  // If path is public, allow through
+  if (isPublicPath) {
     return NextResponse.next();
   }
 
-  // Check cookie — validate HMAC signature, not just existence
-  const cookie = request.cookies.get('openmaic_access');
-  if (cookie?.value && (await verifyToken(cookie.value, accessCode))) {
+  // Check NextAuth session
+  const session = await auth();
+
+  // If authenticated via NextAuth, allow through
+  if (session?.user) {
     return NextResponse.next();
   }
 
-  // API requests without valid cookie → 401
+  // If access code is valid (and access code is configured), allow through
+  if (accessCodeValid && accessCode) {
+    return NextResponse.next();
+  }
+
+  // No valid authentication - redirect to login
   if (pathname.startsWith('/api/')) {
     return NextResponse.json(
-      { success: false, errorCode: 'INVALID_REQUEST', error: 'Access code required' },
+      { success: false, errorCode: 'UNAUTHORIZED', error: 'Authentication required' },
       { status: 401 },
     );
   }
 
-  // Page requests → let through, frontend shows modal
-  return NextResponse.next();
+  // Redirect to login page for page requests
+  const loginUrl = new URL('/login', request.url);
+  loginUrl.searchParams.set('callbackUrl', pathname);
+  return NextResponse.redirect(loginUrl);
 }
+
+export const runtime = 'nodejs';
 
 export const config = {
   matcher: ['/((?!_next/static|_next/image|favicon.ico|logos/).*)'],
